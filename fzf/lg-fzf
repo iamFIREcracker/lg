@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+lg-fzf() {
+  local link
+
+  link=$(lg | fzf --no-sort --exit-0)
+  $BROWSER $link
+}
+lg-fzf
