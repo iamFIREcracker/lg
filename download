@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+
+set -ex
+
+case $(uname -rs) in
+  *Darwin*)
+    BIN_REMOTE=lg-osx
+    BIN_LOCAL=lg
+    ;;
+  *CYGWIN*|*MINGW*)
+    BIN_REMOTE=lg.exe
+    BIN_LOCAL=lg.exe
+    ;;
+  *Microsoft*|*)
+    BIN_REMOTE=lg-linux
+    BIN_LOCAL=lg
+    ;;
+esac
+
+mkdir -p bin
+curl --silent https://api.github.com/repos/iamFIREcracker/lg/releases/latest \
+       | grep "browser_download_url.*$BIN_REMOTE" \
+       | cut -d : -f 2,3 \
+       | tr -d \" \
+       | xargs -I {} curl --location {} --output bin/$BIN_LOCAL
+chmod +x bin/$BIN_LOCAL
