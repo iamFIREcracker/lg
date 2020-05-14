@@ -21,7 +21,7 @@ jobs:
     - os: windows
       language: shell
       env:
-        - LISP=sbcl-bin/2.0.2
+        - LISP=sbcl-bin/2.0.0
         - DEST=lg.exe
 
 install:
