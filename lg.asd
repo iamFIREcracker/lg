@@ -2,7 +2,7 @@
   :description "Matteo's link grabber"
   :author "Matteo Landi <matteo@matteolandi.net>"
   :license  "MIT"
-  :version "0.0.0"
+  :version "0.0.1"
   :depends-on (
                #:cl-ppcre
                #:unix-opts
@@ -26,7 +26,7 @@
   :description "Matteo's link grabber"
   :author "Matteo Landi <matteo@matteolandi.net>"
   :license  "MIT"
-  :version "0.0.0"
+  :version "0.0.1"
   :depends-on (
                #:lg
                #:1am
