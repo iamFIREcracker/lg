@@ -23,7 +23,7 @@
             ((:file "main")))))
 
 (asdf:defsystem :lg/tests
-  :description "Matteo's link grabber"
+  :description "Matteo's link grabber tests suite"
   :author "Matteo Landi <matteo@matteolandi.net>"
   :license  "MIT"
   :version "0.0.1"
@@ -36,4 +36,4 @@
   ((:module "test"
     :serial t
     :components ((:file "main"))))
-  :perform (test-op (o c) (uiop:symbol-call :1am '#:run)))
+  :perform (test-op (o c) (uiop:symbol-call :lg-tests '#:run)))
