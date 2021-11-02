@@ -9,26 +9,51 @@ all: binary
 clean:
 	rm -rf bin
 
+# Info ------------------------------------------------------------------------
+.PHONY: lisp-info
+lisp-info:
+	sbcl --noinform --quit \
+		--load "build/info.lisp"
+
+.PHONY: lisp-info-ros
+lisp-info-ros:
+	ros \
+		--load "build/info.lisp" \
+
 # Build -----------------------------------------------------------------------
+.PHONY: binary
+binary: binary-sbcl
+
+.PHONY: binary-sbcl
+binary-sbcl: bin $(lisps)
+	sbcl --noinform --quit \
+		--load "build/setup.lisp" \
+		--load "build/build.lisp"
+
+.PHONY: binary-ros
+binary-ros: bin $(lisps)
+	ros run \
+		--load "build/setup.lisp" \
+		--load "build/build.lisp"
+
 bin:
 	mkdir -p bin
 
-binary-sbcl: bin $(lisps)
-	sbcl --noinform --load "build.lisp"
-
-binary-ros: bin $(lisps)
-	ros run -- --noinform --load "build.lisp"
-
-binary: binary-sbcl
-
 # Tests -----------------------------------------------------------------------
-test-sbcl: $(lisps)
-	sbcl --noinform --load "test.lisp"
-
-test-ros: $(lisps)
-	ros run -- --load "test.lisp"
-
+.PHONY: test
 test: test-sbcl
+
+.PHONY: test-sbcl
+test-sbcl: $(lisps)
+	sbcl --noinform --quit \
+		--load "build/setup.lisp" \
+		--load "build/test.lisp"
+
+.PHONY: test-ros
+test-ros: $(lisps)
+	ros run \
+		--load "build/setup.lisp" \
+		--load "build/test.lisp"
 
 # Install ---------------------------------------------------------------------
 install:

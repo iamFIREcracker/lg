@@ -1,12 +1,5 @@
-(format t "~a/~a~&" (lisp-implementation-type) (lisp-implementation-version))
-
-(ql:quickload :deploy :silent T)
-
-;; By adding the current directory to ql:*local-project-directories*, we can
-;; QL:QUICKLOAD this without asking users to symlink this repo inside
-;; ~/quicklisp/local-projects, or clone it right there in the first place.
-(push #P"." ql:*local-project-directories*)
-(ql:quickload :lg :silent T)
+(ql:quickload "deploy" :silent T)
+(ql:quickload "lg" :silent T)
 
 (setf lg:*version* (let* ((system (asdf:find-system :lg nil))
                           (base-version (asdf:component-version system))
@@ -19,8 +12,15 @@
                        (format NIL "~a" base-version)
                        (format NIL "~a-r~a" base-version pending))))
 
-(setf deploy:*status-output* nil)
+;; From :deploy README:
+;;
+;;   Alternatively, on Windows, you can build your binary with the feature
+;;   flag :deploy-console present, which will force it to deploy as a console
+;;   application.
 (pushnew :deploy-console *features*)
 
+;; Disable :deploy status messages for the final binary
+;; but enable it during the build process
+(setf deploy:*status-output* nil)
 (let ((deploy:*status-output* t))
   (asdf:make :lg :force t))
