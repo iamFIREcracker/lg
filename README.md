@@ -59,16 +59,19 @@ Finally run `make install` to install the executable globally.
 Using `lg` is really simple: you just pipe some text into it, and it will
 output all the _links_ it was able to extract from it:
 
-    $ tail -n 7 ~/plan/.plan
-    # 2021-10-31
+    $ tail -n 200 ~/plan/.plan
+    ...
+    Then someone else suggested to use [unintenred symbols](http://www.lispworks.com/documentation/HyperSpec/Body/02_dhe.htm) instead, as that will not only keep you safe from the previously mentioned problem, but also give you the opportunity to _document_ why the specific form / element got intentionally excluded:
+    ...
     * While releasing `cg`, the created GH release is named `refs/tags/...` -- turns out I was setting the `name` input to `github.ref`: https://github.com/iamFIREcracker/cg/commit/c0c3ef5b17be40872c67709f445dcbc66c1936c2
     ? migrate `ap` to GitHub actions -- see `cg`
     + migrate `adventofcode` to GitHub actions -- see `cg`
-    ? migrate `lg` to GitHub actions -- see `cg`
+    + migrate `lg` to GitHub actions -- see `cg`
     ? migrate `plan-convert` to GitHub actions -- see `cg`
     ? migrate `xml-emitter` to GitHub actions -- see `cg`
 
-    $ tail -n 7 ~/plan/.plan | lg
+    $ tail -n 200 ~/plan/.plan | lg
+    http://www.lispworks.com/documentation/HyperSpec/Body/02_dhe.htm
     https://github.com/iamFIREcracker/cg/commit/c0c3ef5b17be40872c67709f445dcbc66c1936c2
 
 ## Execute one of the guessed commands
