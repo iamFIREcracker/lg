@@ -2,6 +2,17 @@
 
 Grab links from stdin, and print them to stdout.
 
+# Background
+Not much to say about this, given that similar and sometimes even more powerful
+tools already exist (see: [urlview](https://linux.die.net/man/1/urlview),
+[urlview](https://linux.die.net/man/1/urlview), or Suckless'
+[linkgrabber.sh](https://st.suckless.org/patches/externalpipe/linkgrabber.sh)).
+
+So why? Not a specific reason, really, except that I simply wanted to have some
+fun with Common Lisp.
+
+_enters `lg`.._
+
 # Install
 
 You got 2 options:
